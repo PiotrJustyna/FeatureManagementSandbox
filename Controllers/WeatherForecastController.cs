@@ -19,31 +19,34 @@ namespace FeatureManagementSandbox.Controllers
 
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly IFeatureManager _featureManager;
+    private readonly IFeatureManagerSnapshot _featureManagerSnapshot;
 
     public WeatherForecastController(
           ILogger<WeatherForecastController> logger,
-          IFeatureManager featureManager)
+          IFeatureManager featureManager,
+          IFeatureManagerSnapshot featureManagerSnapshot)
     {
       _logger = logger;
       _featureManager = featureManager;
+      _featureManagerSnapshot = featureManagerSnapshot;
     }
 
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-      bool flagAOn1 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+      bool flagAOn1 = await _featureManagerSnapshot.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
 
       await Task.Delay(99);
 
-      bool flagAOn2 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+      bool flagAOn2 = await _featureManagerSnapshot.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
 
       await Task.Delay(99);
 
-      bool flagAOn3 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+      bool flagAOn3 = await _featureManagerSnapshot.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
 
       await Task.Delay(99);
 
-      bool flagAOn4 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+      bool flagAOn4 = await _featureManagerSnapshot.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
 
 
       var rng = new Random();
