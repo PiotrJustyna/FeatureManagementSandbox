@@ -31,12 +31,20 @@ namespace FeatureManagementSandbox.Controllers
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-      bool flagAOn = false;
+      bool flagAOn1 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
 
-      if (await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA)))
-      {
-        flagAOn = true;
-      }
+      await Task.Delay(99);
+
+      bool flagAOn2 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+
+      await Task.Delay(99);
+
+      bool flagAOn3 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+
+      await Task.Delay(99);
+
+      bool flagAOn4 = await _featureManager.IsEnabledAsync(nameof(MyFeatureFlags.FeatureA));
+
 
       var rng = new Random();
       return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -44,7 +52,7 @@ namespace FeatureManagementSandbox.Controllers
         Date = DateTime.Now.AddDays(index),
         TemperatureC = rng.Next(-20, 55),
         Summary = Summaries[rng.Next(Summaries.Length)],
-        PiotrMessage = $"{MyFeatureFlags.FeatureA}: {flagAOn}."
+        PiotrMessage = $"{MyFeatureFlags.FeatureA}: {flagAOn1}/{flagAOn2}/{flagAOn3}/{flagAOn4}."
       })
       .ToArray();
     }
