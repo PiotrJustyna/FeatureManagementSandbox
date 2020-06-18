@@ -2,11 +2,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace FeatureManagementSandbox
 {
-  public static class MyConfigurationExtensions
+  public static class FeatureManagementSandboxConfigurationExtensions
   {
-    public static IConfigurationBuilder AddMyConfiguration(this IConfigurationBuilder configuration)
+    public static IConfigurationBuilder AddFeatureFlagsConfiguration(this IConfigurationBuilder configuration)
     {
-      configuration.Add(new MyConfigurationSource());
+      configuration.Add(new FeatureFlagsConfigurationSource());
       return configuration;
     }
   }

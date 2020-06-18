@@ -20,7 +20,7 @@ namespace FeatureManagementSandbox
         })
         .ConfigureAppConfiguration((builderContext, config) =>
         {
-          config.AddMyConfiguration();
+          config.AddFeatureFlagsConfiguration();
         });
   }
 }
